@@ -3,8 +3,3 @@
     list-style: none;
     gap: 12px;
 }
-
-.nav > li a {
-    display: block;
-    padding: 8px 12px;
-}
