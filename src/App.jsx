@@ -1,16 +1,17 @@
+import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import Main from './components/Main'
+import HomePage from './pages/HomePage'
+import BookingPage from './pages/BookingPage'
 
 function App() {
 
   return (
-    <>
-      <Header></Header>
-      <Main />
-      <Footer></Footer>
-    </>
+    <BrowserRouter >
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/booking" element={<BookingPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

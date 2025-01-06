@@ -1,7 +1,8 @@
+import { Link } from 'react-router'
 import style from './style.module.css'
 
 export default function Navlink({children, ...rest}) {
   return (
-    <a {...rest} className={style['nav-link']}>{children}</a>
+    <Link {...rest} className={style['nav-link']}>{children}</Link>
   )
 }

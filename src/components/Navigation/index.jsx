@@ -6,13 +6,13 @@ export default function Navigation() {
     <nav>
       <ul className={style.nav}>
         {[
-          {text: "About"},
+          {text: "About", to: "/"},
           {text: "Menu"},
-          {text: "Reservations"},
+          {text: "Reservations", to: "/booking"},
           {text: "Order Online"},
           {text: "Login"},
-        ].map(({text}) => (
-          <li key={text}><Navlink href="">{text}</Navlink></li>
+        ].map(({text, ...rest}) => (
+          <li key={text}><Navlink {...rest} >{text}</Navlink></li>
         ))}
       </ul>
     </nav>
