@@ -1,0 +1,18 @@
+.hero {
+    grid-area: hero;
+    background-color: var(--primary-dark-green);
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+.hero-description {
+    width: 400px;
+    color: #fff;
+}

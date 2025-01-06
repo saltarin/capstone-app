@@ -1,0 +1,34 @@
+.button {
+    color: #000;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: var(--primary-yellow);
+    border-radius: 6px;
+    padding: 8px 16px;
+    text-align: center;
+    line-height: 1em;
+    border: 2px solid transparent;
+    cursor: pointer;
+    height: 60px;
+}
+
+.button:active {
+    border: 2px solid #000;
+}
+
+.button:hover {
+    text-decoration: underline;;
+}
+
+.button:disabled {
+    color: var(--highlight-dark-gray);
+    background-color: var(--highlight-light-gray);
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: not-allowed;
+}
+
+.button-block {
+    display:block;
+    width: 100%;
+}

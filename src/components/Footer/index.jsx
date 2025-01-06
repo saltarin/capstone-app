@@ -3,7 +3,8 @@ import foodImg from '../../assets/restauranfood.jpg'
 
 export default function Footer() {
   return (
-    <footer className={style.footer}>
+    <footer className="full-width">
+      <div className={`${style.footer} container`}>
       <img src={foodImg} alt="footer_img" width={150}/>
       <ul>
         <li><b>Doormat Navigation</b></li>
@@ -25,6 +26,7 @@ export default function Footer() {
         <li>address</li>
         <li>phone number</li>
       </ul>
+      </div>
     </footer>
   )
 }

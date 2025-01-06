@@ -1,0 +1,14 @@
+.specials {
+    grid-area: specials;
+}
+
+.specials-list {
+    display: flex;
+    gap: 34px;
+}
+
+.specials-heading {
+    display: flex;
+    justify-content: space-between;
+    margin: 70px 0 50px;
+}

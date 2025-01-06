@@ -1,12 +1,14 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Main from "../components/Main";
+import Hero from "../components/Hero";
+import Specials from "../components/Specials";
 
 export default function HomePage() {
   return (
     <>
         <Header></Header>
-        <Main />
+        <Hero />
+        <Specials />
         <Footer></Footer>
     </>
   )

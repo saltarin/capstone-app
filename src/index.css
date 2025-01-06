@@ -47,25 +47,29 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  margin: 0;
+}
+
 .display-title {
   font-family: var(--markazi);
-  font-size: 64px;
+  font-size: 54px;
   font-weight: 500;
-  color: #000;
+  color: inherit;
 }
 
 .sub-title {
   font-family: var(--markazi);
-  font-size: 64px;
+  font-size: 40px;
   font-weight: 400;
-  color: #000;
+  color: inherit;
 }
 
 .lead-text {
   font-family: var(--karla);
   font-size: 18px;
   font-weight: 500;
-  color: #000;
+  color: inherit;
 }
 
 .section-title {
@@ -73,21 +77,21 @@ a {
   font-size: 20px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #000;
+  color: inherit;
 }
 
 .section-categories {
   font-family: var(--karla);
   font-size: 16px;
   font-weight: 800;
-  color: #000;
+  color: inherit;
 }
 
 .card-title {
   font-family: var(--karla);
   font-size: 18px;
   font-weight: 700;
-  color: #000;
+  color: inherit;
 }
 
 .paragraph-text {
@@ -103,4 +107,16 @@ a {
   font-size: 16px;
   font-weight: 500;
   color: var(--primary-dark-green);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.container {
+  max-width: 900px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
 }
