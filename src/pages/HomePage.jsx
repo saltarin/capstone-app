@@ -1,3 +1,4 @@
+import CustomersSay from "../components/CustomersSay";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
@@ -9,6 +10,7 @@ export default function HomePage() {
         <Header></Header>
         <Hero />
         <Specials />
+        <CustomersSay />
         <Footer></Footer>
     </>
   )

@@ -1,0 +1,15 @@
+.customer-say {
+    grid-area: testimonials;
+    background-color: var(--secondary-orange);
+}
+
+.customer-say__title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.customer-say__list {
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+}
