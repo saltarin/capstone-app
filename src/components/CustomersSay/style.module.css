@@ -1,6 +1,7 @@
 .customer-say {
     grid-area: testimonials;
     background-color: var(--secondary-orange);
+    height: 450px;
 }
 
 .customer-say__title {

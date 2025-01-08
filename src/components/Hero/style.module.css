@@ -3,6 +3,7 @@
     background-color: var(--primary-dark-green);
     display: flex;
     align-items: center;
+    height: 400px;
 }
 
 .hero-content {

@@ -1,9 +1,11 @@
 .specials {
     grid-area: specials;
+    height: 600px;
 }
 
 .specials-list {
     display: flex;
+    justify-content: space-around;
     gap: 34px;
 }
 

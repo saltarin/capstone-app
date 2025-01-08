@@ -126,3 +126,10 @@ h1 {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.container-center {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
