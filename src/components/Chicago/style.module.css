@@ -1,0 +1,35 @@
+.chicago-container {
+    grid-area: chicago;
+    display: flex;
+    align-items: center;;
+    justify-content: space-between;
+}
+
+.chicago-content {
+    width: 370px;
+}
+
+.chicago-imageset {
+    position: relative;
+    width: 447px;
+    height: 445px;
+}
+
+.chicago-imageset > img {
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.chicago-imageset__right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    object-position: 70% 0;
+}
+
+.chicago-imageset__left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    object-position: 35% 0;
+}

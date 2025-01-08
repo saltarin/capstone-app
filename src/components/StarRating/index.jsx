@@ -35,10 +35,10 @@ export default function StarRating({ rating, style, ...rest }) {
   };
 
   return (
-    <lu className={styleCss["star-rating"]} {...rest} style={style} >
+    <ul className={styleCss["star-rating"]} {...rest} style={style} >
       {stars.map((starKey, index) => (
         <li key={index}>{starMap[starKey]}</li>
       ))}
-    </lu>
+    </ul>
   );
 }

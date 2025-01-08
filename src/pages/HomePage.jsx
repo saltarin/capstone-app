@@ -1,3 +1,4 @@
+import Chicago from "../components/Chicago";
 import CustomersSay from "../components/CustomersSay";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -11,6 +12,7 @@ export default function HomePage() {
         <Hero />
         <Specials />
         <CustomersSay />
+        <Chicago />
         <Footer></Footer>
     </>
   )

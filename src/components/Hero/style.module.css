@@ -16,3 +16,7 @@
     width: 400px;
     color: #fff;
 }
+
+.hero-img {
+    border-radius: 8px;
+}

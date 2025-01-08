@@ -1,10 +1,30 @@
 .footer {
+    background: var(--primary-dark-green);
+    height: 400px;
+}
+
+.footer-container {
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: center;
     grid-area: footer;
 }
 
-.footer > ul {
-    text-align: left;
+.footer__link-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.footer__link-group {
+    width: 210px;
+}
+
+.footer__link {
+    display: flex;
+    align-items: center;
+}
+
+.footer__link > svg {
+    margin-right: .5rem;
 }
