@@ -1,30 +1,29 @@
 import PageLayout from '../components/PageLayout'
 import BookingForm from '../components/BookingForm'
-import { useReducer } from 'react'
-
-export function initializeTimes() {
-  return [
-    {text: "17:00", value:"17:00"},
-      {text: "18:00", value:"18:00"},
-      {text: "19:00", value:"19:00"},
-      {text: "20:00", value:"20:00"},
-      {text: "21:00", value:"21:00"},
-      {text: "22:00", value:"22:00"},
-  ]
-}
+import { useEffect, useReducer } from 'react'
+import {fetchAPI} from '../bin/api'
 
 export function updateTimes(state, {action, data}) {
   switch (action) {
     case "update_date":
-      console.log('data received', data)
-      return [...state]
+      return data.map(date => ({text:date, value: date}))
     default:
       return [...state]
   }
 }
 
 export function BookingPage() {
-  const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes())
+
+  const [availableTimes, dispatch] = useReducer(updateTimes, [])
+
+  const initializeTimes = () => {
+    const data = fetchAPI(new Date())
+    dispatch({action: "update_date", data})
+  }
+
+  useEffect(() => {
+    initializeTimes()
+  }, [])
 
   return (
     <PageLayout>

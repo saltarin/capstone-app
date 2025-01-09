@@ -7,6 +7,7 @@ import { RootColorsProvider } from './providers/RootColorProvider'
 function App() {
 
   return (
+    <>
     <RootColorsProvider>
       <BrowserRouter >
         <Routes>
@@ -15,6 +16,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </RootColorsProvider>
+    </>
   )
 }
 

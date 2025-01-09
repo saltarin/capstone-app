@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { fetchAPI } from '../../bin/api';
 
 const initialValues = {
   ['res-date']: "",
@@ -28,7 +29,10 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
   };
 
   const handleChangeResDate = (event) => {
-    dispatch({ action: 'update_date', data: event.target.value });
+    const selectedDate = new Date(`${event.target.value}T00:00:00-05:00`)
+    const data = fetchAPI(selectedDate)
+    dispatch({ action: 'update_date', data });
+    console.log('handleChangeResDate', event.target.value, selectedDate, data)
   };
 
   return (
