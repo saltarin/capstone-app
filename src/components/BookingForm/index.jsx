@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
   occasion: Yup.string().required(),
 })
 
-export default function BookingForm() {
+export default function BookingForm({availableTimes, dispatch}) {
 
   const formik = useFormik({
     initialValues,
@@ -26,19 +26,19 @@ export default function BookingForm() {
     }
   })
 
-  const [availableTimes, setAvailableTimes] = useState([
-    {text: "17:00", value:"17:00"},
-    {text: "18:00", value:"18:00"},
-    {text: "19:00", value:"19:00"},
-    {text: "20:00", value:"20:00"},
-    {text: "21:00", value:"21:00"},
-    {text: "22:00", value:"22:00"},
-  ])
+  const handleChangeWithExtraLogic = (customLogicHandler) => (event) => {
+    formik.handleChange(event);
+    customLogicHandler(event);
+  }
+
+  const handleChangeResDate = (event) => {
+    dispatch({action: "update_date", data: event.target.value})
+  }
 
   return (
     <form style={{ display: "grid", maxWidth: "200px", gap: "20px" }} onSubmit={formik.handleSubmit}>
       <label htmlFor="res-date">Choose date</label>
-      <input type="date" id="res-date" onChange={formik.handleChange} value={formik.values.resDate}/>
+      <input type="date" id="res-date" onChange={handleChangeWithExtraLogic(handleChangeResDate)} value={formik.values.resDate}/>
       <select id="res-time" onChange={formik.handleChange} value={formik.values.resTime}>
         {availableTimes.map(({text, value}) => (
           <option key={value}>{text}</option>
