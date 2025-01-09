@@ -1,56 +1,122 @@
 import { useFormik } from 'formik';
-import { useState } from 'react';
-import * as Yup from 'yup'
+import * as Yup from 'yup';
 
 const initialValues = {
-  ['res-date']: null,
-  ['res-time']: null,
+  ['res-date']: "",
+  ['res-time']: "",
   guests: 0,
-  occasion: null
-}
+  occasion: ""
+};
 
 const validationSchema = Yup.object().shape({
   ['res-date']: Yup.date().min(new Date()).required(),
   ['res-time']: Yup.string().required(),
   guests: Yup.number().min(1).required(),
   occasion: Yup.string().required(),
-})
+});
 
-export default function BookingForm({availableTimes, dispatch}) {
-
+export default function BookingForm({ availableTimes, dispatch }) {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: values => {
-      console.log(values)
-    }
-  })
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   const handleChangeWithExtraLogic = (customLogicHandler) => (event) => {
     formik.handleChange(event);
     customLogicHandler(event);
-  }
+  };
 
   const handleChangeResDate = (event) => {
-    dispatch({action: "update_date", data: event.target.value})
-  }
+    dispatch({ action: 'update_date', data: event.target.value });
+  };
 
   return (
-    <form style={{ display: "grid", maxWidth: "200px", gap: "20px" }} onSubmit={formik.handleSubmit}>
+    <form
+      aria-labelledby="booking-form-title"
+      aria-describedby="booking-form-description"
+      style={{ display: 'grid', maxWidth: '200px', gap: '20px' }}
+      onSubmit={formik.handleSubmit}
+    >
+      <h2 id="booking-form-title">Make Your Reservation</h2>
+      <p id="booking-form-description">Fill out the form below to book your table at Little Lemon.</p>
+
       <label htmlFor="res-date">Choose date</label>
-      <input type="date" id="res-date" onChange={handleChangeWithExtraLogic(handleChangeResDate)} value={formik.values.resDate}/>
-      <select id="res-time" onChange={formik.handleChange} value={formik.values.resTime}>
-        {availableTimes.map(({text, value}) => (
-          <option key={value}>{text}</option>
+      <input
+        type="date"
+        id="res-date"
+        name="res-date"
+        onChange={handleChangeWithExtraLogic(handleChangeResDate)}
+        value={formik.values['res-date']}
+        aria-required="true"
+        aria-describedby={formik.errors['res-date'] ? 'res-date-error' : undefined}
+      />
+      {formik.errors['res-date'] && formik.touched['res-date'] && (
+        <div id="res-date-error" aria-live="assertive" style={{ color: 'red' }}>
+          {formik.errors['res-date']}
+        </div>
+      )}
+
+      <label htmlFor="res-time">Choose time</label>
+      <select
+        id="res-time"
+        name="res-time"
+        onChange={formik.handleChange}
+        value={formik.values['res-time']}
+        aria-required="true"
+        aria-labelledby="res-time-label"
+      >
+        {availableTimes.map(({ text, value }) => (
+          <option key={value} value={value}>
+            {text}
+          </option>
         ))}
       </select>
+      {formik.errors['res-time'] && formik.touched['res-time'] && (
+        <div id="res-time-error" aria-live="assertive" style={{ color: 'red' }}>
+          {formik.errors['res-time']}
+        </div>
+      )}
+
       <label htmlFor="guests">Number of guests</label>
-      <input type="number" placeholder="1" min="1" max="10" id="guests" onChange={formik.handleChange} values={formik.values.guests}/>
+      <input
+        type="number"
+        id="guests"
+        name="guests"
+        placeholder="1"
+        min="1"
+        max="10"
+        onChange={formik.handleChange}
+        value={formik.values.guests}
+        aria-required="true"
+        aria-describedby={formik.errors.guests ? 'guests-error' : undefined}
+      />
+      {formik.errors.guests && formik.touched.guests && (
+        <div id="guests-error" aria-live="assertive" style={{ color: 'red' }}>
+          {formik.errors.guests}
+        </div>
+      )}
+
       <label htmlFor="occasion">Occasion</label>
-      <select id="occasion" onChange={formik.handleChange} values={formik.values.occasion}>
-        <option>Birthday</option>
-        <option>Anniversary</option>
+      <select
+        id="occasion"
+        name="occasion"
+        onChange={formik.handleChange}
+        value={formik.values.occasion}
+        aria-required="true"
+      >
+        <option value="">Select...</option>
+        <option value="Birthday">Birthday</option>
+        <option value="Anniversary">Anniversary</option>
       </select>
+      {formik.errors.occasion && formik.touched.occasion &&(
+        <div id="occasion-error" aria-live="assertive" style={{ color: 'red' }}>
+          {formik.errors.occasion}
+        </div>
+      )}
+
       <input type="submit" value="Make Your reservation" />
     </form>
   );
