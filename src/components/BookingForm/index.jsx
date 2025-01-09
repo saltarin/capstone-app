@@ -15,13 +15,11 @@ const validationSchema = Yup.object().shape({
   occasion: Yup.string().required(),
 });
 
-export default function BookingForm({ availableTimes, dispatch }) {
+export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit,
   });
 
   const handleChangeWithExtraLogic = (customLogicHandler) => (event) => {
@@ -40,7 +38,7 @@ export default function BookingForm({ availableTimes, dispatch }) {
       style={{ display: 'grid', maxWidth: '200px', gap: '20px' }}
       onSubmit={formik.handleSubmit}
     >
-      <h2 id="booking-form-title">Make Your Reservation</h2>
+      <h2 id="booking-form-title">Book Now</h2>
       <p id="booking-form-description">Fill out the form below to book your table at Little Lemon.</p>
 
       <label htmlFor="res-date">Choose date</label>
@@ -66,7 +64,7 @@ export default function BookingForm({ availableTimes, dispatch }) {
         onChange={formik.handleChange}
         value={formik.values['res-time']}
         aria-required="true"
-        aria-labelledby="res-time-label"
+        aria-label="Choose time"
       >
         {availableTimes.map(({ text, value }) => (
           <option key={value} value={value}>
@@ -106,6 +104,7 @@ export default function BookingForm({ availableTimes, dispatch }) {
         onChange={formik.handleChange}
         value={formik.values.occasion}
         aria-required="true"
+        aria-label="Occasion"
       >
         <option value="">Select...</option>
         <option value="Birthday">Birthday</option>

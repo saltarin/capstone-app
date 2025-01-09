@@ -2,7 +2,7 @@ import PageLayout from '../components/PageLayout'
 import BookingForm from '../components/BookingForm'
 import { useReducer } from 'react'
 
-function initializeTimes() {
+export function initializeTimes() {
   return [
     {text: "17:00", value:"17:00"},
       {text: "18:00", value:"18:00"},
@@ -13,7 +13,7 @@ function initializeTimes() {
   ]
 }
 
-function updateTimes(state, {action, data}) {
+export function updateTimes(state, {action, data}) {
   switch (action) {
     case "update_date":
       console.log('data received', data)
@@ -23,14 +23,14 @@ function updateTimes(state, {action, data}) {
   }
 }
 
-export default function BookingPage() {
+export function BookingPage() {
   const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes())
 
   return (
     <PageLayout>
       <section className='full-width'>
         <div className='container container-center'>
-          <BookingForm availableTimes={availableTimes} dispatch={dispatch}/>
+          <BookingForm availableTimes={availableTimes} dispatch={dispatch} onSubmit={values => console.log(values)}/>
         </div>
       </section>
     </PageLayout>

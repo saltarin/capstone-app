@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
 import HomePage from './pages/HomePage'
-import BookingPage from './pages/BookingPage'
+import { BookingPage } from './pages/BookingPage'
 import { RootColorsProvider } from './providers/RootColorProvider'
 
 function App() {
