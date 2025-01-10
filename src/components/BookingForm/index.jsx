@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { fetchAPI } from '../../bin/api';
+import { getMidnightUTC } from '../../utils/date';
 
 const initialValues = {
   ['res-date']: "",
@@ -10,7 +11,7 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object().shape({
-  ['res-date']: Yup.date().min(new Date()).required(),
+  ['res-date']: Yup.date().min(getMidnightUTC()).required(),
   ['res-time']: Yup.string().required(),
   guests: Yup.number().min(1).required(),
   occasion: Yup.string().required(),
@@ -50,6 +51,7 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         id="res-date"
         name="res-date"
         onChange={handleChangeWithExtraLogic(handleChangeResDate)}
+        onBlur={formik.handleBlur}
         value={formik.values['res-date']}
         aria-required="true"
         aria-describedby={formik.errors['res-date'] ? 'res-date-error' : undefined}
@@ -65,10 +67,12 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         id="res-time"
         name="res-time"
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         value={formik.values['res-time']}
         aria-required="true"
         aria-label="Choose time"
       >
+        <option value="">Select time...</option>
         {availableTimes.map(({ text, value }) => (
           <option key={value} value={value}>
             {text}
@@ -90,6 +94,7 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         min="1"
         max="10"
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         value={formik.values.guests}
         aria-required="true"
         aria-describedby={formik.errors.guests ? 'guests-error' : undefined}
@@ -106,10 +111,11 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         name="occasion"
         onChange={formik.handleChange}
         value={formik.values.occasion}
+        onBlur={formik.handleBlur}
         aria-required="true"
         aria-label="Occasion"
       >
-        <option value="">Select...</option>
+        <option value="">Select occasion...</option>
         <option value="Birthday">Birthday</option>
         <option value="Anniversary">Anniversary</option>
       </select>
@@ -119,7 +125,7 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         </div>
       )}
 
-      <input type="submit" value="Make Your reservation" />
+      <input type="submit" value="Make Your reservation" disabled={!formik.isValid}/>
     </form>
   );
 }
