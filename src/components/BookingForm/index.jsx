@@ -32,7 +32,6 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
     const selectedDate = new Date(`${event.target.value}T00:00:00-05:00`)
     const data = fetchAPI(selectedDate)
     dispatch({ action: 'update_date', data });
-    console.log('handleChangeResDate', event.target.value, selectedDate, data)
   };
 
   return (
