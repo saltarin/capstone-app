@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { fetchAPI } from "../../bin/api";
 import { getMidnightUTC } from "../../utils/date";
+import style from "./style.module.css";
 
 const initialValues = {
   ["res-date"]: "",
@@ -37,21 +38,28 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
 
   return (
     <form
+      className={style.formContainer}
       aria-labelledby="booking-form-title"
       aria-describedby="booking-form-description"
-      style={{ display: "grid", maxWidth: "200px", gap: "20px" }}
       onSubmit={formik.handleSubmit}
     >
-      <header>
-        <h2 id="booking-form-title">Book Now</h2>
-        <p id="booking-form-description">
+      <header className={style.formHeader}>
+        <h2 id="booking-form-title" className={`${style.formTitle} section-title`}>
+          Book Now
+        </h2>
+        <p id="booking-form-description" className="paragraph-text">
           Fill out the form below to book your table at Little Lemon.
         </p>
       </header>
-      <fieldset style={{ display: "grid", maxWidth: "200px", gap: "20px" }}>
-        <legend style={{ margin: "1rem 0" }}>Reservation Details</legend>
-        <label htmlFor="res-date">Choose date</label>
+
+      <fieldset className={style.fieldset}>
+        <legend className={`${style.legend} card-title`}>Reservation Details</legend>
+
+        <label className={`${style.label} highlight-text`} htmlFor="res-date">
+          Choose date
+        </label>
         <input
+          className={style.input}
           type="date"
           id="res-date"
           name="res-date"
@@ -70,16 +78,19 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         {formik.errors["res-date"] && formik.touched["res-date"] && (
           <div
             id="res-date-error"
+            className={style.error}
             aria-live="assertive"
-            style={{ color: "red" }}
             role="alert"
           >
             {formik.errors["res-date"]}
           </div>
         )}
 
-        <label htmlFor="res-time">Choose time</label>
+        <label className={style.label} htmlFor="res-time">
+          Choose time
+        </label>
         <select
+          className={style.select}
           id="res-time"
           name="res-time"
           onChange={formik.handleChange}
@@ -104,16 +115,19 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         {formik.errors["res-time"] && formik.touched["res-time"] && (
           <div
             id="res-time-error"
+            className={style.error}
             aria-live="assertive"
-            style={{ color: "red" }}
             role="alert"
           >
             {formik.errors["res-time"]}
           </div>
         )}
 
-        <label htmlFor="guests">Number of guests</label>
+        <label className={style.label} htmlFor="guests">
+          Number of guests
+        </label>
         <input
+          className={style.input}
           type="number"
           id="guests"
           name="guests"
@@ -132,16 +146,19 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         {formik.errors.guests && formik.touched.guests && (
           <div
             id="guests-error"
+            className={style.error}
             aria-live="assertive"
-            style={{ color: "red" }}
             role="alert"
           >
             {formik.errors.guests}
           </div>
         )}
 
-        <label htmlFor="occasion">Occasion</label>
+        <label className={style.label} htmlFor="occasion">
+          Occasion
+        </label>
         <select
+          className={style.select}
           id="occasion"
           name="occasion"
           onChange={formik.handleChange}
@@ -160,18 +177,19 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         {formik.errors.occasion && formik.touched.occasion && (
           <div
             id="occasion-error"
+            className={style.error}
             aria-live="assertive"
-            style={{ color: "red" }}
             role="alert"
           >
             {formik.errors.occasion}
           </div>
         )}
       </fieldset>
+
       <input
+        className={style.submitButton}
         type="submit"
         value="Make Your reservation"
-        role="button"
         disabled={!formik.isValid}
       />
     </form>
