@@ -58,6 +58,27 @@ describe("BookingForm", () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
+  test("error message should show when guess input is above 10", async () => {
+    render(
+      <BookingForm
+        availableTimes={[{ text: "19:00", value: "19:00" }]}
+        dispatch={vi.fn()}
+        onSubmit={vi.fn()}
+      />
+    );
+    const user = userEvent.setup();
+
+    const guestsInput = screen.getByLabelText(/Number of guests/i);
+
+    await user.clear(guestsInput);
+    await user.type(guestsInput, "11");
+    await user.tab();
+    const errorMessage = screen.getByText(
+      /guests must be less than or equal to 10/i
+    );
+    expect(errorMessage).toBeInTheDocument();
+  });
+
   test("error message should show when ocassion select is not selected", async () => {
     render(
       <BookingForm
